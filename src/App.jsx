@@ -1,5 +1,18 @@
-import './App.css'
+import { useState } from 'react';
+import TodoList from './TodoList';
 
 export default function App() {
-  return <h1>Things to Do</h1>;
+  const [todos, setTodos] = useState([
+    {id: 1, content: 'Meet Masao for Udon'},
+    {id: 2, content: 'Fix up these horrible React notes'},
+  ]);
+  function deleteTodo(id){
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+  return (
+    <div>
+      <h1>Things To Do</h1>
+      <TodoList todos={todos} deleter={deleteTodo}/>
+    </div>
+  );
 }
